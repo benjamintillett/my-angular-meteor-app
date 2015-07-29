@@ -16,9 +16,49 @@ if (Meteor.isClient){
 		}
 	}
 
+	function PartyDetailsCtrl($stateParams,$meteor){
+		var self = this;
+		self.party = $meteor.object(Parties,$stateParams.partyId,false);
 
-	angular.module('socially',['angular-meteor'])
-		.controller('PartiesListCtrl',PartiesListCtrl);
+		self.save = function() {
+			self.party.save().then(function(numberOfDocs){
+				console.log('save success doc affexted', numberOfDocs);
+			}, function(error){
+				console.log('save error',error);
+			})		
+		}
+		
+		self.reset = function() {
+			self.party.reset();
+		}
+
+	}
+
+
+
+	function Config($urlRouterProvider,$stateProvider,$locationProvider){
+		$locationProvider.html5Mode(true);
+
+		$stateProvider
+			.state('parties',{
+				url: '/parties',
+				templateUrl: 'parties-list.ng.html',
+				controller: 'PartiesListCtrl as parties'
+			})
+			.state('partyDetails',{
+				url: '/parties/:partyId',
+				templateUrl: 'party-details.ng.html',
+				controller: 'PartyDetailsCtrl as partyDetails'
+			});
+			$urlRouterProvider.otherwise('/parties');
+
+	}
+
+
+	angular.module('socially',['angular-meteor','ui.router'])
+		.config(['$urlRouterProvider','$stateProvider','$locationProvider',Config])
+		.controller('PartiesListCtrl',PartiesListCtrl)
+		.controller('PartyDetailsCtrl',['$stateParams','$meteor',PartyDetailsCtrl]);
 }
 
 
