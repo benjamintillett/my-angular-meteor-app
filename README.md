@@ -1,0 +1,1 @@
+My first Angular-Metor app following the [Angualr Meteor tutorial](http://angular-meteor.com/tutorials/angular1/bootstrapping)
