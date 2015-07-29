@@ -8,7 +8,12 @@ if (Meteor.isClient){
 
 		self.parties = $meteor.collection(Parties);
 
-
+		self.remove = function(party){
+			self.parties.remove(party);
+		}
+		self.removeAll = function(){
+			self.parties.remove();
+		}
 	}
 
 
