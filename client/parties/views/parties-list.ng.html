@@ -3,7 +3,7 @@
   <input ng-model='parties.newParty.name'>
   <label>Description</label>
 <input ng-model='parties.newParty.description'>
-<button ng-click="parties.parties.save(parties.newParty); parties.newParty='';">Add</button>
+<button ng-click="parties.newParty.owner=$root.currentUser._id; parties.parties.save(parties.newParty); parties.newParty='';">Add</button>
 </form>
 <ul>
 <li ng-repeat="party in parties.parties">

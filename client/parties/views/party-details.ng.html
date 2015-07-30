@@ -6,3 +6,11 @@ Here you will see and change the details of the party:
 <button ng-click="partyDetails.save()">Save</button>
 <button ng-click="partyDetails.reset()">Reset</button>
 <button ui-sref="parties">Cancel</button>
+
+
+<ul>
+	Users: 
+	<li ng-repeat='user in partyDetails.users'>
+		<div>{{ user.emails[0].address }}</div>
+	</li>
+</ul>

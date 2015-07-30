@@ -1,6 +1,8 @@
 function PartyDetailsCtrl($stateParams,$meteor){
 	var self = this;
-	self.party = $meteor.object(Parties,$stateParams.partyId,false);
+
+	self.party = $meteor.object(Parties,$stateParams.partyId).subscribe('parties');
+	self.users = $meteor.collection(Meteor.users,false).subscribe('users');
 
 	self.save = function() {
 		self.party.save().then(function(numberOfDocs){
