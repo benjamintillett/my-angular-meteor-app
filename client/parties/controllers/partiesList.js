@@ -12,4 +12,4 @@ function PartiesListCtrl($meteor){
 }
 
 angular.module('socially')
-	.controller('PartiesListCtrl',PartiesListCtrl)
+	.controller('PartiesListCtrl',['$meteor',PartiesListCtrl])
